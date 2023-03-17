@@ -14,8 +14,9 @@ jobs:
       - name: Install python
         run: |
           apt update
-          apt install ffmpeg  python3 python3-pip -y
+          apt install ffmpeg curl python3 python3-pip -y
           pip3 install requests pydub natsort
+      - name: Generate audio
           echo こんにちは>test.txt
           curl -s -X POST "localhost:50021/audio_query?speaker=1" --get --data-urlencode text@text.txt
           #sapporo
