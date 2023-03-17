@@ -9,9 +9,5 @@ jobs:
       ports:
         - 50021:50021
     steps:
-      - name: Copy README.md to container
-        run: docker cp README.md $(docker ps -q):/tmp
-      - name: Display README.md in container
-        run: |
-          echo "Contents of README.md:"
-          docker exec $(docker ps -q) cat /tmp/README.md
+      - name: ls
+        run: ls
