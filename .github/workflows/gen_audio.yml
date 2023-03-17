@@ -1,6 +1,9 @@
 name: Voicevox Engine
-on: push
-
+on:
+  push:
+    branches:
+      - main
+      
 jobs:
   voicevox-engine:
     runs-on: ubuntu-latest
