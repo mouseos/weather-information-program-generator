@@ -13,7 +13,8 @@ jobs:
         uses: actions/checkout@v3
       - name: Install python
         run: |
-          sudo apt install python3 python-pip3 -y
+          apt update
+          apt install python3 python-pip3 -y
           pip3 install requests json pydub natsort
           python3 ./weather.py
           ls -l
