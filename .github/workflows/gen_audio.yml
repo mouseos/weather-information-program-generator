@@ -1,6 +1,8 @@
 name: Gen audio
 
 on:
+  schedule:
+    - cron: "0 * * * *"
   push:
     branches:
       - main
@@ -20,7 +22,7 @@ jobs:
         sudo apt install ffmpeg curl python3 python3-pip -y
         pip3 install requests pydub natsort
     - name: Run Docker container
-      run: docker run --rm -p '127.0.0.1:50021:50021' voicevox/voicevox_engine:cpu-ubuntu20.04-latest & sleep 20;  python3 weather.py 016010
+      run: docker run --rm -p '127.0.0.1:50021:50021' voicevox/voicevox_engine:cpu-ubuntu20.04-latest & sleep 20; $(python3 weather.py 016010|tee result.txt)
     - name: Copy files to audio directory
       run: |
         mkdir -p audio
