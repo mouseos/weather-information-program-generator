@@ -1,0 +1,25 @@
+name: Gen audio
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Install Docker
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y docker.io
+
+    - name: Download Docker image
+      run: docker pull voicevox/voicevox_engine:cpu-ubuntu20.04-latest
+
+    - name: Run Docker container
+      run: docker run --rm -it -p '127.0.0.1:50021:50021' voicevox/voicevox_engine:cpu-ubuntu20.04-latest
