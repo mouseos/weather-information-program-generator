@@ -18,7 +18,7 @@ jobs:
           pip3 install requests pydub natsort
       - name: Generate audio
         run: |
-          echo こんにちは>tet.txt
+          echo こんにちは>text.txt
           curl -s -X POST "localhost:50021/audio_query?speaker=1" --get --data-urlencode text@text.txt
           #sapporo
           #python3 ./weather.py 016010
