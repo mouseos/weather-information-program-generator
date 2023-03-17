@@ -11,5 +11,4 @@ jobs:
     steps:
       - name: Log container info
         run: |
-          echo "Running in container: $(hostname)"
-          echo "Container IP address: $(hostname -I)"
+          ls -l
