@@ -44,7 +44,7 @@ elif(now<24):
 try:
 	#今日の予報
 	f1="今日は"+re.sub('　','',re.sub('風', '風。', (str(data['forecasts'][0]['detail']['wind']))))+re.sub("雨","あめ",re.sub('　','',re.sub('所により','。所により',str(data['forecasts'][0]['detail']['weather']))))+"でしょう。"+cor+"予想最高気温は"+str(data['forecasts'][0]['temperature']['max']['celsius'])+"度です。\n"
-ecept:
+except:
 	f1=""
 try:
 	#明日の予報
