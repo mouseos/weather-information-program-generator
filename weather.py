@@ -1,6 +1,6 @@
 import requests
 import json
-import time
+import datetime
 import sys
 import re
 import wave
@@ -8,7 +8,8 @@ from pydub import AudioSegment,effects
 from natsort import natsorted
 #エリア
 area=sys.argv[1]
-now = int(time.strftime('%H'))
+now = datetime.datetime.now().hour
+
 data = json.loads(requests.get('https://weather.tsukumijima.net/api/forecast/city/'+area).text)
 
 
@@ -42,21 +43,12 @@ elif(now<24):
 
 
 #今日の予報
-
-try:
-	f1="今日は"+re.sub('　','',re.sub('風', '風。', (str(data['forecasts'][0]['detail']['wind']))))+re.sub("雨","あめ",re.sub('　','',re.sub('所により','。所により',str(data['forecasts'][0]['detail']['weather']))))+"でしょう。"+cor+"予想最高気温は"+str(data['forecasts'][0]['temperature']['max']['celsius'])+"度です。\n"
-except:
-	f1=" "
+f1="今日は"+re.sub('　','',re.sub('風', '風。', (str(data['forecasts'][0]['detail']['wind']))))+re.sub("雨","あめ",re.sub('　','',re.sub('所により','。所により',str(data['forecasts'][0]['detail']['weather']))))+"でしょう。"+cor+"予想最高気温は"+str(data['forecasts'][0]['temperature']['max']['celsius'])+"度です。\n"
 #明日の予報
-try:
-	f2="明日は"+re.sub('　','',re.sub('風', '風。', (data['forecasts'][1]['detail']['wind'])))+re.sub("雨","あめ",re.sub('　','',re.sub('所により','。所により',(data['forecasts'][1]['detail']['weather']))))+"でしょう。"+"0時から6時まで降水確率は"+cor5+"。6時から12時までは"+cor6+"。12時から18時までは"+cor7+"。18時から24時までは"+cor8+"です。"+"予想最高気温は"+data['forecasts'][1]['temperature']['max']['celsius']+"度。最低気温は"+data['forecasts'][1]['temperature']['min']['celsius']+"度です。\n"
-except:
-	f2=" "
+f2="明日は"+re.sub('　','',re.sub('風', '風。', (data['forecasts'][1]['detail']['wind'])))+re.sub("雨","あめ",re.sub('　','',re.sub('所により','。所により',(data['forecasts'][1]['detail']['weather']))))+"でしょう。"+"0時から6時まで降水確率は"+cor5+"。6時から12時までは"+cor6+"。12時から18時までは"+cor7+"。18時から24時までは"+cor8+"です。"+"予想最高気温は"+data['forecasts'][1]['temperature']['max']['celsius']+"度。最低気温は"+data['forecasts'][1]['temperature']['min']['celsius']+"度です。\n"
 #明後日の予報
-try:
-	f3="あさっては"+re.sub('　','',re.sub('風', '風。', (data['forecasts'][2]['detail']['wind'])))+re.sub("雨","あめ",re.sub('　','',re.sub('所により','。所により',(data['forecasts'][2]['detail']['weather']))))+"でしょう。"+"0時から6時まで降水確率は"+cor5+"。6時から12時までは"+cor6+"。12時から18時までは"+cor7+"。18時から24時までは"+cor8+"です。"+"予想最高気温は"+data['forecasts'][2]['temperature']['max']['celsius']+"度。最低気温は"+data['forecasts'][2]['temperature']['min']['celsius']+"度です。\n"
-except:
-	f3=" "
+f3="あさっては"+re.sub('　','',re.sub('風', '風。', (data['forecasts'][2]['detail']['wind'])))+re.sub("雨","あめ",re.sub('　','',re.sub('所により','。所により',(data['forecasts'][2]['detail']['weather']))))+"でしょう。"+"0時から6時まで降水確率は"+cor5+"。6時から12時までは"+cor6+"。12時から18時までは"+cor7+"。18時から24時までは"+cor8+"です。"+"予想最高気温は"+data['forecasts'][2]['temperature']['max']['celsius']+"度。最低気温は"+data['forecasts'][2]['temperature']['min']['celsius']+"度です。\n"
+
 #あいさつ
 if(4<now and now<10):
 	greet="おはようございます。"
@@ -122,6 +114,4 @@ text=re.sub("くもり未明","くもり。未明",text)
 text=re.sub("のち","のち、",text)
 text=re.sub("のち、、","のち、",text)
 print(text)
-
 generate_wav(text,16,1.3,"weather_info_sapporo.wav")
-
