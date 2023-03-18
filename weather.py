@@ -41,14 +41,21 @@ elif(now<18):
 elif(now<24):
 	cor="18時から24時までの降水確率は"+cor4+"です。"
 
-
-#今日の予報
-f1="今日は"+re.sub('　','',re.sub('風', '風。', (str(data['forecasts'][0]['detail']['wind']))))+re.sub("雨","あめ",re.sub('　','',re.sub('所により','。所により',str(data['forecasts'][0]['detail']['weather']))))+"でしょう。"+cor+"予想最高気温は"+str(data['forecasts'][0]['temperature']['max']['celsius'])+"度です。\n"
-#明日の予報
-f2="明日は"+re.sub('　','',re.sub('風', '風。', (data['forecasts'][1]['detail']['wind'])))+re.sub("雨","あめ",re.sub('　','',re.sub('所により','。所により',(data['forecasts'][1]['detail']['weather']))))+"でしょう。"+"0時から6時まで降水確率は"+cor5+"。6時から12時までは"+cor6+"。12時から18時までは"+cor7+"。18時から24時までは"+cor8+"です。"+"予想最高気温は"+data['forecasts'][1]['temperature']['max']['celsius']+"度。最低気温は"+data['forecasts'][1]['temperature']['min']['celsius']+"度です。\n"
-#明後日の予報
-f3="あさっては"+re.sub('　','',re.sub('風', '風。', (data['forecasts'][2]['detail']['wind'])))+re.sub("雨","あめ",re.sub('　','',re.sub('所により','。所により',(data['forecasts'][2]['detail']['weather']))))+"でしょう。"+"0時から6時まで降水確率は"+cor5+"。6時から12時までは"+cor6+"。12時から18時までは"+cor7+"。18時から24時までは"+cor8+"です。"+"予想最高気温は"+data['forecasts'][2]['temperature']['max']['celsius']+"度。最低気温は"+data['forecasts'][2]['temperature']['min']['celsius']+"度です。\n"
-
+try:
+	#今日の予報
+	f1="今日は"+re.sub('　','',re.sub('風', '風。', (str(data['forecasts'][0]['detail']['wind']))))+re.sub("雨","あめ",re.sub('　','',re.sub('所により','。所により',str(data['forecasts'][0]['detail']['weather']))))+"でしょう。"+cor+"予想最高気温は"+str(data['forecasts'][0]['temperature']['max']['celsius'])+"度です。\n"
+ecept:
+	f1=""
+try:
+	#明日の予報
+	f2="明日は"+re.sub('　','',re.sub('風', '風。', (data['forecasts'][1]['detail']['wind'])))+re.sub("雨","あめ",re.sub('　','',re.sub('所により','。所により',(data['forecasts'][1]['detail']['weather']))))+"でしょう。"+"0時から6時まで降水確率は"+cor5+"。6時から12時までは"+cor6+"。12時から18時までは"+cor7+"。18時から24時までは"+cor8+"です。"+"予想最高気温は"+data['forecasts'][1]['temperature']['max']['celsius']+"度。最低気温は"+data['forecasts'][1]['temperature']['min']['celsius']+"度です。\n"
+except:
+	f2=""
+try:
+	#明後日の予報
+	f3="あさっては"+re.sub('　','',re.sub('風', '風。', (data['forecasts'][2]['detail']['wind'])))+re.sub("雨","あめ",re.sub('　','',re.sub('所により','。所により',(data['forecasts'][2]['detail']['weather']))))+"でしょう。"+"0時から6時まで降水確率は"+cor5+"。6時から12時までは"+cor6+"。12時から18時までは"+cor7+"。18時から24時までは"+cor8+"です。"+"予想最高気温は"+data['forecasts'][2]['temperature']['max']['celsius']+"度。最低気温は"+data['forecasts'][2]['temperature']['min']['celsius']+"度です。\n"
+except:
+	f3=""
 #あいさつ
 if(4<now and now<10):
 	greet="おはようございます。"
