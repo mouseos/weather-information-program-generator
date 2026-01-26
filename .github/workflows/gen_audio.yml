@@ -2,7 +2,7 @@ name: Gen audio
 
 on:
   schedule:
-    - cron: "40 * * * *"
+    - cron: "0 2,6,8,11,15,21 * * *"
   push:
     branches:
       - main
@@ -33,3 +33,4 @@ jobs:
       with:
         commit_message: "Add generated audio files"
         branch: main
+
